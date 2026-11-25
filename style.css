@@ -1,0 +1,75 @@
+:root {
+  --ink: #0f1b3d;
+  --paper: #f2f5fb;
+  --aksen: #22d3ee;
+  --ok: #34d399;
+  --bad: #fb7185;
+  --amber: #fbbf24;
+}
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Bricolage Grotesque", system-ui, sans-serif; }
+
+/* header */
+header { background: var(--ink); color: white; padding: 36px 16px 64px; }
+.isi, main { max-width: 780px; margin: 0 auto; }
+h1 { margin: 0 0 8px; font-size: clamp(2rem, 6vw, 3rem); font-weight: 800; letter-spacing: -0.02em; }
+header p { margin: 0; color: #aab6d9; max-width: 55ch; }
+main { margin-top: -40px; padding: 0 16px 40px; }
+
+/* kartu */
+.kartu { background: white; border-radius: 14px; padding: 18px; margin-bottom: 16px; box-shadow: 0 6px 24px rgba(15, 27, 61, .1); }
+.gelap { background: var(--ink); color: white; }
+h2 { margin: 0 0 10px; font-size: 1.1rem; }
+
+/* input */
+.input-baris { display: flex; gap: 8px; }
+input, select { font-family: inherit; border: 2px solid #d5dcee; border-radius: 10px; padding: 10px 12px; font-size: 1rem; background: white; }
+input { flex: 1; min-width: 0; font: 500 1.1rem "JetBrains Mono", monospace; }
+input:focus, select:focus { outline: none; border-color: var(--aksen); }
+button { font: inherit; cursor: pointer; border-radius: 10px; border: 1px solid #c3cde6; background: white; padding: 4px 10px; transition: .2s; }
+button:hover { border-color: var(--ink); }
+#jalan { background: var(--ink); color: white; border-color: var(--ink); font-weight: 700; padding: 0 22px; }
+#jalan:hover { background: #22d3ee; color: var(--ink); }
+.contoh { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .9rem; color: #5a6577; }
+.contoh button { font: 500 .8rem "JetBrains Mono", monospace; }
+
+/* token */
+.token { display: flex; gap: 8px; flex-wrap: wrap; min-height: 56px; }
+.chip { display: flex; flex-direction: column; align-items: center; padding: 6px 12px; border-radius: 8px; background: rgba(255, 255, 255, .08); transition: .3s; }
+.chip b { font: 500 1.05rem "JetBrains Mono", monospace; }
+.chip small { font-size: .65rem; color: #8fa1d1; }
+.chip.aktif { background: var(--amber); color: var(--ink); transform: translateY(-4px); }
+.chip.aktif small { color: var(--ink); }
+.chip.selesai { background: rgba(34, 211, 238, .2); }
+.chip.salah { background: var(--bad); color: white; }
+.chip.salah small { color: white; }
+
+/* diagram */
+svg { width: 100%; margin-top: 8px; }
+svg text { font: 500 13px "JetBrains Mono", monospace; text-anchor: middle; fill: #cbd5f5; }
+.state { transform-box: fill-box; transform-origin: center; }
+.state circle { fill: #16264f; stroke: #4b5f95; stroke-width: 2; transition: fill .4s, stroke .4s; }
+.state circle.dalam { fill: none; }
+.visited circle:first-child { fill: #164e63; stroke: var(--aksen); }
+.now circle:first-child { fill: var(--aksen); stroke: var(--aksen); }
+.now text { fill: var(--ink); }
+.now { animation: denyut .5s; }
+.garis { fill: none; stroke: #4b5f95; stroke-width: 1.5; transition: stroke .4s; }
+.garis.dipakai { stroke: var(--aksen); stroke-width: 3; }
+svg .label { font-size: 10px; fill: #8fa1d1; }
+#titik { fill: var(--amber); filter: drop-shadow(0 0 6px var(--amber)); }
+
+/* hasil */
+.sukses #titik, .sukses .now circle:first-child { fill: var(--ok); stroke: var(--ok); }
+.salah #titik, .salah .now circle:first-child { fill: var(--bad); stroke: var(--bad); }
+.salah .now { animation: getar .4s; }
+.info { margin: 10px 0 0; font-weight: 700; min-height: 1.5em; }
+.info.ok { color: var(--ok); }
+.info.bad { color: var(--bad); }
+
+pre { background: var(--paper); border-radius: 8px; padding: 12px; overflow-x: auto; font: .85rem/1.7 "JetBrains Mono", monospace; margin: 0; }
+.catatan { color: #5a6577; font-size: .9rem; margin: 10px 0 0; }
+
+@keyframes denyut { 50% { transform: scale(1.2); } }
+@keyframes getar { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+@media (max-width: 520px) { .input-baris { flex-wrap: wrap; } input { flex-basis: 100%; } #jalan { padding: 10px 22px; } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }

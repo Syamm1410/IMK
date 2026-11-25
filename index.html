@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulasi DFA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="isi">
+      <h1>Simulasi DFA</h1>
+      <p>Lihat automata membaca satu pernyataan kode, token demi token, lalu menerima atau menolaknya.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="kartu">
+      <div class="input-baris">
+        <input id="kode" value="let umur = 20;" spellcheck="false" aria-label="Kode">
+        <select id="kecepatan" aria-label="Kecepatan">
+          <option value="1400">Lambat</option>
+          <option value="900" selected>Normal</option>
+          <option value="500">Cepat</option>
+        </select>
+        <button id="jalan">Jalankan</button>
+      </div>
+      <div class="contoh">
+        Coba:
+        <button data-k="x = x + 1;">x = x + 1;</button>
+        <button data-k="const nama = &quot;Budi&quot;;">const nama = "Budi";</button>
+        <button data-k="let = 5;">let = 5;</button>
+        <button data-k="var x 10;">var x 10;</button>
+        <button data-k="let a = 5">let a = 5</button>
+      </div>
+    </section>
+
+    <section class="kartu gelap">
+      <div id="token" class="token"></div>
+      <svg id="peta" viewBox="0 0 700 210" role="img" aria-label="Diagram state DFA"></svg>
+      <p id="info" class="info">Tekan “Jalankan” untuk memulai.</p>
+    </section>
+
+    <section class="kartu">
+      <h2>Aturan bahasa</h2>
+      <pre>deklarasi : (let | var | const) nama = nilai ;
+penugasan : nama = nilai ;
+nilai     : angka | "string" | nama, boleh disambung dengan + - * /</pre>
+      <p class="catatan">State awal q0. State akhir q5 (lingkaran ganda): kalimat diterima jika berhenti di sana.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
